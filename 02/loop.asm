@@ -6,7 +6,7 @@
 start:
     mov dl, 'A'         ; move character A to DL register
     mov cx, 10          ; move decimal 10 to cx register
-                        ; loop from A to J
+                        ; used to loop from A to J
 
 print_loop:
     call write_char     ; print the current character
