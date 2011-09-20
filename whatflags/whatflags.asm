@@ -59,7 +59,7 @@ next:
 error1:
     push    badArguments
     call    _printf
-;   call    printf                 ; linux
+;   call    printf                  ; linux
     add     esp, 4                  ; restore esp since we pushed badArguments
 
 done:                               ; restore registers
