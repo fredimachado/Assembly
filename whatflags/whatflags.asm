@@ -3,12 +3,20 @@
 ;; Checkout my C++ version in:
 ;; https://github.com/Fredi/Cpp/blob/master/flags/whatflags.cpp
 ;;
-;; Compile: nasm -f win32 whatflags.asm
-;; Link: gcc -o whatflags.exe whatflags.obj
+;; Windows build:
+;; nasm -f win32 whatflags.asm
+;; gcc -o whatflags.exe whatflags.obj
+;;
+;; Linux build: (remove underscore on lines 34, 49 and 61)
+;; nasm -f elf whatflags.asm
+;; gcc -o whatflags whatflags.obj
 
-    global  _main
-    extern  _atoi
-    extern  _printf
+    global   main                   ; linux
+    global  _main                   ; windows
+    extern   atoi                   ; linux
+    extern  _atoi                   ; windows
+    extern   printf                 ; linux
+    extern  _printf                 ; windows
 
     section .text
 
@@ -24,6 +32,7 @@ _main:
     mov     edx, [esp+20]           ; argv
     push    dword [edx+4]           ; argv[1] (mask)
     call    _atoi
+;   call    atoi                    ; linux    
     mov     edi, eax                ; eax from atoi
     add     esp, 4                  ; restore esp since we pushed argv[1]
 
@@ -38,6 +47,7 @@ check:
     push    esi                     ; %X
     push    format
     call    _printf
+;   call    printf                  ; linux
     add     esp, 12                 ; restore esp since we pushed format and esi twice
 
 next:
@@ -49,6 +59,7 @@ next:
 error1:
     push    badArguments
     call    _printf
+;   call    printf                 ; linux
     add     esp, 4                  ; restore esp since we pushed badArguments
 
 done:                               ; restore registers
