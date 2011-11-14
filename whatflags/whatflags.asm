@@ -42,7 +42,7 @@ check:
     mov     esi, 1
     shl     esi, cl                 ; current flag
     test    edi, esi                ; mask & flag
-    jz      next                    ; if mask not set jump to next
+    jz      next                    ; if flag not set test next one
 
     push    ecx                     ; save ecx (printf will use it)
     push    esi                     ; %d
