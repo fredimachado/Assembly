@@ -7,7 +7,7 @@
 ;; nasm -f win32 whatflags.asm
 ;; gcc -o whatflags.exe whatflags.obj
 ;;
-;; Linux build: (remove underscore on lines 34, 49 and 61)
+;; Linux build: (remove first comma on lines 35, 52 and 65)
 ;; nasm -f elf whatflags.asm
 ;; gcc -o whatflags whatflags.obj
 
